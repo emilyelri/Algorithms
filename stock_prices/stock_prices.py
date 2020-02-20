@@ -9,11 +9,13 @@ def find_max_profit(prices):
 
   if prices.index(maximum) == 0:
     lossMin = max(prices[1:])
-    profit = lossMin-maximum
+    return lossMin-maximum
   else:
     for i in range(0, len(prices)):
-      minimum = min(minimum, prices[i])
-      profit = max(profit, prices[i] - minimum)
+      if prices[i] < minimum:
+        minimum = prices[i]
+      if prices[i] - minimum > profit:
+        profit = prices[i] - minimum
 
   return profit
 
